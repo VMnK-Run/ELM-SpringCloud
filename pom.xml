@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>user_server_10100</module>
+        <module>food_server_10200</module>
+        <module>business_server_10300</module>
     </modules>
     <packaging>pom</packaging>
 

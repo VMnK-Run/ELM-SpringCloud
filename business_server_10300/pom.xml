@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>user_server_10100</artifactId>
+    <artifactId>business_server_10300</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -56,4 +56,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

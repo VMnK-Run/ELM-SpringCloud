@@ -58,14 +58,26 @@ public class UserController {
         return new CommonResult<>(200, "success", result);
     }
 
-//    @PutMapping("/updateUserById")
-//    public int updateUserById(User user) throws Exception {
-//        return userService.updateUserById(user);
-// TODO 这个函数还没写
-//    }
+    @PutMapping("/updateUserById/{userId}/{password}/{userName}/{userSex}/{userImg}")
+    public CommonResult<Integer> updateUserById(
+            @PathVariable("userId") String userId,
+            @PathVariable("password") String password,
+            @PathVariable("userName") String userName,
+            @PathVariable("userSex") Integer userSex,
+            @PathVariable("userImg") String userImg
+    ) throws Exception {
+        User param = new User();
+        param.setUserId(userId);
+        param.setPassword(password);
+        param.setUserName(userName);
+        param.setUserSex(userSex);
+        param.setUserImg(userImg);
+        int result = userService.updateUserById(param);
+        return new CommonResult<>(200, "success", result);
+    }
 
-    @RequestMapping("/getUserInfoById{userId}")
-    public CommonResult<UserInfo> getUserInfoById(@PathVariable String userId) throws Exception {
+    @RequestMapping("/getUserInfoById/{userId}")
+    public CommonResult<UserInfo> getUserInfoById(@PathVariable("userId") String userId) throws Exception {
         UserInfo result = userService.getUserInfoById(userId);
         return new CommonResult<>(200, "success", result);
     }
