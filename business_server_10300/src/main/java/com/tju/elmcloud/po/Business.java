@@ -1,5 +1,7 @@
 package com.tju.elmcloud.po;
 
+import java.util.List;
+
 public class Business {
     private Integer businessId;
     private String businessName;
@@ -10,6 +12,16 @@ public class Business {
     private Double starPrice;
     private Double deliveryPrice;
     private String remarks;
+
+    public List<Food> getFoodList() {
+        return foodList;
+    }
+
+    public void setFoodList(List<Food> foodList) {
+        this.foodList = foodList;
+    }
+
+    private List<Food> foodList;
 
     private double longitude;
 

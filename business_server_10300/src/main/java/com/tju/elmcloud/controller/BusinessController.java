@@ -2,6 +2,7 @@ package com.tju.elmcloud.controller;
 
 import com.tju.elmcloud.po.Business;
 import com.tju.elmcloud.po.CommonResult;
+import com.tju.elmcloud.po.Food;
 import com.tju.elmcloud.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,12 @@ public class BusinessController {
     @GetMapping("/getBusinessById/{businessId}")
     public CommonResult<Business> getBusinessById(@PathVariable("businessId") Integer businessId) throws Exception {
         Business business = businessService.getBusinessById(businessId);
+        CommonResult<List<Food>> result = restTemplate.getForObject("http://localhost:10200/FoodController/listFoodByBusinessId/"
+        + businessId, CommonResult.class);
+        assert result != null;
+        if(result.getCode() == 200) {
+            business.setFoodList(result.getResult());
+        }
         return new CommonResult<>(200, "success", business);
     }
 
