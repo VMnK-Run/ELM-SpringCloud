@@ -21,7 +21,7 @@ public class BusinessController {
     @Autowired
     private RestTemplate restTemplate;
 
-
+    //TODO 这里提供的代码是访问了食品微服务，不知道有啥意义
     @GetMapping ("/listBusinessByOrderTypeId/{orderTypeId}")
     public CommonResult<List<Business>> listBusinessByOrderTypeId(@PathVariable("orderTypeId") Integer orderTypeId) throws Exception {
         List<Business> list = businessService.listBusinessByOrderTypeId(orderTypeId);

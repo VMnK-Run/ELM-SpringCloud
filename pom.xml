@@ -11,6 +11,9 @@
         <module>user_server_10100</module>
         <module>food_server_10200</module>
         <module>business_server_10300</module>
+        <module>cart_server_10400</module>
+        <module>deliveryaddress_server_10500</module>
+        <module>orders_server_10600</module>
     </modules>
     <packaging>pom</packaging>
 
