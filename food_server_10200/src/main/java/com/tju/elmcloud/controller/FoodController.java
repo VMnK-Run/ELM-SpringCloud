@@ -4,8 +4,10 @@ import com.tju.elmcloud.po.CommonResult;
 import com.tju.elmcloud.po.Food;
 import com.tju.elmcloud.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -16,11 +18,11 @@ public class FoodController {
     @Autowired
     private FoodService foodService;
 
-    @GetMapping("/listFoodByBusinessId/{businessId}")
-    public CommonResult<List<Food>> listFoodByBusinessId(@PathVariable("businessId") Integer businessId) throws Exception {
+    @GetMapping(value = "/listFoodByBusinessId/{businessId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public CommonResult<List> listFoodByBusinessId(@PathVariable("businessId") Integer businessId) throws Exception {
         List<Food> list = foodService.listFoodByBusinessId(businessId);
-
-        return new CommonResult<>(200, "success", list);
+        System.out.println(list);
+        return new CommonResult(200, "success", list);
     }
 /* TODO 这里的函数还没添加
     @RequestMapping("/getFoodByRandom")

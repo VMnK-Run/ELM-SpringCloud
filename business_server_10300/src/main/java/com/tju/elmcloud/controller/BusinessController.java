@@ -5,6 +5,8 @@ import com.tju.elmcloud.po.CommonResult;
 import com.tju.elmcloud.po.Food;
 import com.tju.elmcloud.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,6 +24,9 @@ public class BusinessController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
     //TODO 这里提供的代码是访问了食品微服务，不知道有啥意义
     @GetMapping ("/listBusinessByOrderTypeId/{orderTypeId}")
     public CommonResult<List<Business>> listBusinessByOrderTypeId(@PathVariable("orderTypeId") Integer orderTypeId) throws Exception {
@@ -32,11 +37,14 @@ public class BusinessController {
 
     @GetMapping("/getBusinessById/{businessId}")
     public CommonResult<Business> getBusinessById(@PathVariable("businessId") Integer businessId) throws Exception {
+        // 通过食品微服务名获取 Eureka 元数据
+        List<ServiceInstance> instanceList = discoveryClient.getInstances("food-server");
+        ServiceInstance instance = instanceList.get(0);
         Business business = businessService.getBusinessById(businessId);
-        CommonResult<List<Food>> result = restTemplate.getForObject("http://localhost:10200/FoodController/listFoodByBusinessId/"
-        + businessId, CommonResult.class);
+        CommonResult<List> result = restTemplate.getForObject("http://" + instance.getHost() + ":" + instance.getPort() +"/FoodController/listFoodByBusinessId/" + businessId, CommonResult.class);
         assert result != null;
         if(result.getCode() == 200) {
+            System.out.println(result.getResult());
             business.setFoodList(result.getResult());
         }
         return new CommonResult<>(200, "success", business);
