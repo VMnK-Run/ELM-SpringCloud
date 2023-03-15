@@ -6,11 +6,13 @@ import com.tju.elmcloud.po.CommonResult;
 import com.tju.elmcloud.po.Food;
 import com.tju.elmcloud.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -22,6 +24,7 @@ public class BusinessController {
     @Autowired
     private BusinessService businessService;
 
+    @Qualifier("com.tju.elmcloud.feign.FoodFeignClient")
     @Autowired
     private FoodFeignClient foodFeignClient;
 
@@ -40,6 +43,8 @@ public class BusinessController {
         System.out.println(result.getMessage());
         if(result.getCode() == 200) {
             business.setFoodList(result.getResult());
+        } else {
+            business.setFoodList(new ArrayList<>());
         }
         return new CommonResult<>(200, "success", business);
     }

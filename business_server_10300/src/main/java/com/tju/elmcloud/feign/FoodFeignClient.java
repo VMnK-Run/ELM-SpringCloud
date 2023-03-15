@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "food-server")
+@FeignClient(name = "food-server", fallback = FoodFeignClientCallBack.class)
 public interface FoodFeignClient {
 
     @GetMapping("/FoodController/listFoodByBusinessId/{businessId}")

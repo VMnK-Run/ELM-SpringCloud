@@ -28,3 +28,7 @@ eureka:
   instance:
     prefer-ip-address: true #使用ip地址向Eureka注册
     instance-id: ${spring.cloud.client.ip-address}:${server.port} #自定义微服务实例ID
+
+feign:
+  hystrix:
+    enabled: true
