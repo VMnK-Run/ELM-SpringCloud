@@ -1,5 +1,6 @@
 package com.tju.elmcloud.controller;
 
+import com.tju.elmcloud.feign.FoodFeignClient;
 import com.tju.elmcloud.po.Business;
 import com.tju.elmcloud.po.CommonResult;
 import com.tju.elmcloud.po.Food;
@@ -22,10 +23,7 @@ public class BusinessController {
     private BusinessService businessService;
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
-    private DiscoveryClient discoveryClient;
+    private FoodFeignClient foodFeignClient;
 
     //TODO 这里提供的代码是访问了食品微服务，不知道有啥意义
     @GetMapping ("/listBusinessByOrderTypeId/{orderTypeId}")
@@ -37,14 +35,10 @@ public class BusinessController {
 
     @GetMapping("/getBusinessById/{businessId}")
     public CommonResult<Business> getBusinessById(@PathVariable("businessId") Integer businessId) throws Exception {
-        // 通过食品微服务名获取 Eureka 元数据
-        List<ServiceInstance> instanceList = discoveryClient.getInstances("food-server");
-        ServiceInstance instance = instanceList.get(0);
         Business business = businessService.getBusinessById(businessId);
-        CommonResult<List> result = restTemplate.getForObject("http://" + instance.getHost() + ":" + instance.getPort() +"/FoodController/listFoodByBusinessId/" + businessId, CommonResult.class);
-        assert result != null;
+        CommonResult<List> result = foodFeignClient.listFoodByBusinessId(businessId);
+        System.out.println(result.getMessage());
         if(result.getCode() == 200) {
-            System.out.println(result.getResult());
             business.setFoodList(result.getResult());
         }
         return new CommonResult<>(200, "success", business);

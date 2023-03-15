@@ -1,0 +1,16 @@
+package com.tju.elmcloud.service;
+
+import com.tju.elmcloud.po.Food;
+
+import java.util.List;
+
+public interface FoodService {
+
+    public List<Food> listFoodByBusinessId(Integer businessId);
+
+//    public Food getFoodByRandom();
+//
+//    public List<Food> listFoodByTime();
+//
+//    public List<Food> listFoodByTimeDefaults();
+}

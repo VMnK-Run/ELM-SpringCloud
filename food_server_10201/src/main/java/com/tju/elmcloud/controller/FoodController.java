@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -22,7 +21,7 @@ public class FoodController {
     public CommonResult<List> listFoodByBusinessId(@PathVariable("businessId") Integer businessId) throws Exception {
         List<Food> list = foodService.listFoodByBusinessId(businessId);
         System.out.println(list);
-        return new CommonResult(200, "success(10200)", list);
+        return new CommonResult(200, "success(10201)", list);
     }
 /* TODO 这里的函数还没添加
     @RequestMapping("/getFoodByRandom")

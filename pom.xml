@@ -16,6 +16,7 @@
         <module>orders_server_10600</module>
         <module>eureka_server_13000</module>
         <module>eureka_server_13001</module>
+        <module>food_server_10201</module>
     </modules>
     <packaging>pom</packaging>
 
