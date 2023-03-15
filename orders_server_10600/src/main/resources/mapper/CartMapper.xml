@@ -28,7 +28,7 @@
         order by cartId
     </select>
 
-    <delete id="removeCart" parameterType="com.tju.elmboot.po.Cart">
+    <delete id="removeCart" parameterType="com.tju.elmcloud.po.Cart">
         delete from cart
         <where>
             userId=#{userId} and businessId=#{businessId}

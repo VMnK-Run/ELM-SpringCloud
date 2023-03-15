@@ -14,12 +14,14 @@
         <module>cart_server_10400</module>
         <module>deliveryaddress_server_10500</module>
         <module>orders_server_10600</module>
+        <module>eureka_server_13000</module>
+        <module>eureka_server_13001</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -33,7 +35,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.7.3</version>
+                <version>2.3.3.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
