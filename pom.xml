@@ -17,6 +17,10 @@
         <module>eureka_server_13000</module>
         <module>eureka_server_13001</module>
         <module>food_server_10201</module>
+        <module>gateway_server_14000</module>
+        <module>business_server_10301</module>
+        <module>cart_server_10401</module>
+        <module>orders_server_10601</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -1,0 +1,30 @@
+server:
+  port: 10401
+
+logging:
+  level:
+    org.springframework: debug
+    com.tju.elmcloud.mapper: debug
+
+spring:
+  application:
+    name: cart-server
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/elm?characterEncoding=utf-8&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.tju.elmcloud.po
+
+#eureka配置
+eureka:
+  client:
+    service-url:
+      #将自己注册给Eureka Server集群
+      defaultZone: http://eurekaServer13000:13000/eureka,http://eurekaServer13001:13001/eureka
+  instance:
+    prefer-ip-address: true #使用ip地址向Eureka注册
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #自定义微服务实例ID

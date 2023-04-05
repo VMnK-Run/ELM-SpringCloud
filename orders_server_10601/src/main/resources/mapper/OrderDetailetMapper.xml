@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tju.elmcloud.mapper.OrderDetailetMapper">
+
+    <insert id="saveOrderDetailetBatch" parameterType="com.tju.elmcloud.po.OrderDetailet">
+        insert into orderdetailet(orderId,foodId,quantity) values
+        <foreach collection="list" item="od" separator=",">
+            (#{od.orderId},#{od.foodId},#{od.quantity})
+        </foreach>
+    </insert>
+    
+    <resultMap id="orderDetailetResultMap" type="com.tju.elmcloud.po.OrderDetailet">
+        <id column="odId" property="odId"/>
+        <id column="orderId" property="orderId"/>
+        <result column="foodId" property="foodId"/>
+        <result column="quantity" property="quantity"/>
+
+        <association property="food" javaType="com.tju.elmcloud.po.Food"
+        select="com.tju.elmcloud.mapper.FoodMapper.getFoodById" column="foodId"/>
+
+    </resultMap>
+
+    <select id="listOrderDetailetByOrderId" parameterType="integer" resultMap="orderDetailetResultMap">
+        select * from orderdetailet where orderId=#{orderId}
+    </select>
+</mapper>

@@ -8,7 +8,7 @@ import com.tju.elmcloud.viewpo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*")  // 跨域处理
+//@CrossOrigin(origins = "*")  // 跨域处理
 @RestController
 @RequestMapping("/UserController")
 public class UserController {

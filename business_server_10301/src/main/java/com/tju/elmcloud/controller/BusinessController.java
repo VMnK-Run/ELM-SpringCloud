@@ -32,7 +32,7 @@ public class BusinessController {
     @GetMapping ("/listBusinessByOrderTypeId/{orderTypeId}")
     public CommonResult<List<Business>> listBusinessByOrderTypeId(@PathVariable("orderTypeId") Integer orderTypeId) throws Exception {
         List<Business> list = businessService.listBusinessByOrderTypeId(orderTypeId);
-        return new CommonResult<>(200, "success(10300)", list);
+        return new CommonResult<>(200, "success(10301)", list);
 
     }
 
