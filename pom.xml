@@ -21,6 +21,9 @@
         <module>business_server_10301</module>
         <module>cart_server_10401</module>
         <module>orders_server_10601</module>
+        <module>config_server_15000</module>
+        <module>comments_server_10700</module>
+        <module>credit_server_10800</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -24,16 +24,14 @@ public class FoodController {
         System.out.println(list);
         return new CommonResult(200, "success(10200)", list);
     }
-/* TODO 这里的函数还没添加
-    @RequestMapping("/getFoodByRandom")
+
+    @GetMapping("/getFoodByRandom")
     public Food getFoodByRandom() throws Exception {
         return foodService.getFoodByRandom();
     }
 
-    @RequestMapping("/listFoodByTime")
+    @GetMapping("/listFoodByTime")
     public List<Food> listFoodByTime() throws Exception {
         return foodService.listFoodByTime();
     }
-
- */
 }

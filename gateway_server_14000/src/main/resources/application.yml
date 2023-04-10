@@ -46,12 +46,22 @@ spring:
         - id: deliveryaddressServer
           uri: lb://deliveryaddress-server
           predicates:
-            - Path=/DeliveryaddressController/*/**
+            - Path=/DeliveryAddressController/*/**
 
         - id: ordersServer
           uri: lb://orders-server
           predicates:
             - Path=/OrdersController/*/**
+
+        - id: commentsServer
+          uri: lb://comments-server
+          predicates:
+            - Path=/CommentsController/*/**
+
+        - id: creditServer
+          uri: lb://credit-server
+          predicates:
+            - Path=/CreditController/*/**
 
 #eureka配置
 eureka:
@@ -63,3 +73,13 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     lease-renewal-interval-in-seconds: 5 #续约间隔时间
     lease-expiration-duration-in-seconds: 15 #续约到期时间
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000

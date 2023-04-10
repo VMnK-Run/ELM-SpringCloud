@@ -8,9 +8,9 @@ public interface FoodService {
 
     public List<Food> listFoodByBusinessId(Integer businessId);
 
-//    public Food getFoodByRandom();
-//
-//    public List<Food> listFoodByTime();
-//
-//    public List<Food> listFoodByTimeDefaults();
+    public Food getFoodByRandom();
+
+    public List<Food> listFoodByTime();
+
+    public List<Food> listFoodByTimeDefaults();
 }

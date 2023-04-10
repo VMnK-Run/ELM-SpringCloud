@@ -1,0 +1,23 @@
+server:
+  port: 15000
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config: #有关springcloud config的配置
+      server:
+        git:
+          uri: https://gitee.com/wang-yangsen/ELMScc.git #git远程仓库地址
+
+#eureka配置
+eureka:
+  client:
+    service-url:
+      #将自己注册给defaultZone所指定的eureka server集群上
+      defaultZone: http://eurekaServer13000:13000/eureka/,http://eurekaServer13001:13001/eureka/
+  instance:
+    prefer-ip-address: true #使用ip地址向eureka server进行注册
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #设置eureka控制台中
+    lease-renewal-interval-in-seconds: 5 #续约间隔时间
+    lease-expiration-duration-in-seconds: 15 #续约到期时间

@@ -11,9 +11,9 @@
         <result column="userId" property="userId"/>
         <result column="quantity" property="quantity"/>
         <association property="food" javaType="com.tju.elmcloud.po.Food"
-                     select="com.tju.elmboot.mapper.FoodMapper.getFoodById" column="foodId"/>
+                     select="com.tju.elmcloud.mapper.FoodMapper.getFoodById" column="foodId"/>
         <association property="business" javaType="com.tju.elmcloud.po.Business"
-                     select="com.tju.elmboot.mapper.BusinessMapper.getBusinessById"
+                     select="com.tju.elmcloud.mapper.BusinessMapper.getBusinessById"
                      column="businessId"/>
     </resultMap>
 

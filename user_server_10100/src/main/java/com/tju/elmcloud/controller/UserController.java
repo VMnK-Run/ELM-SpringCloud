@@ -76,7 +76,7 @@ public class UserController {
         return new CommonResult<>(200, "success", result);
     }
 
-    @RequestMapping("/getUserInfoById/{userId}")
+    @GetMapping("/getUserInfoById/{userId}")
     public CommonResult<UserInfo> getUserInfoById(@PathVariable("userId") String userId) throws Exception {
         UserInfo result = userService.getUserInfoById(userId);
         return new CommonResult<>(200, "success", result);

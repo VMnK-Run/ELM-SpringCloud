@@ -1,15 +1,18 @@
 package com.tju.elmcloud.service.impl;
 
-//import com.tju.elmcloud.mapper.BusinessMapper;
-//import com.tju.elmcloud.mapper.CommentMapper;
+import com.tju.elmcloud.mapper.BusinessMapper;
+import com.tju.elmcloud.mapper.CommentMapper;
 
 import com.tju.elmcloud.mapper.FoodMapper;
+import com.tju.elmcloud.po.Business;
+import com.tju.elmcloud.po.Comment;
 import com.tju.elmcloud.po.Food;
 import com.tju.elmcloud.service.FoodService;
+import com.tju.elmcloud.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class FoodServiceImpl implements FoodService {
@@ -17,17 +20,17 @@ public class FoodServiceImpl implements FoodService {
     @Autowired
     private FoodMapper foodMapper;
 
-//    @Autowired
-//    private BusinessMapper businessMapper;
-//
-//    @Autowired
-//    private CommentMapper commentMapper;
+    @Autowired
+    private BusinessMapper businessMapper;
+
+    @Autowired
+    private CommentMapper commentMapper;
 
     @Override
     public List<Food> listFoodByBusinessId(Integer businessId) {
         return foodMapper.listFoodByBusinessId(businessId);
     }
-/*
+
     @Override
     public Food getFoodByRandom() {
         List<Food> foodList = foodMapper.listAllFood();
@@ -200,5 +203,5 @@ public class FoodServiceImpl implements FoodService {
             averageStar = 5.0;
         }
         return averageStar;
-    }*/
+    }
 }
